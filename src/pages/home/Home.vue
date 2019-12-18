@@ -18,13 +18,20 @@
         </div>
         </div>
       <p></p>
-       <!-- 室内信息-->
+       <!-- 室内信息-->id
     <div id="c">
     <div><p>室内:</p></div>
     <div>
-    <div class="e1"><p id="c3">23°C</p><button type="button" onclick='document.getElementById("c3").innerHTML="温度已经插入"'>点击我查询温度</button></div>
-    <div class="e2"><p id="c4">%23</p><button type="button" onclick='document.getElementById("c4").innerHTML="湿度已经插入"'>点击我查询湿度</button></div>
-    <div class="e3"><p id="c5">3/m³</p><button type="button" onclick='document.getElementById("c5").innerHTML="PM2.5已经插入"'>点击我查询PM2.5</button></div>
+
+      <!-- 模拟数值表插入 -->
+    <div id="tooltip"></div>
+
+    <div class="e2"><p id="c4">%23
+      </p><button type="button" onclick='document.getElementById("c4").innerHTML="湿度已经插入"'>
+        点击我查询湿度</button></div>
+    <div class="e3"><p id="c5">3/m³
+      </p><button type="button" onclick='document.getElementById("c5").innerHTML="PM2.5已经插入"'>
+        点击我查询PM2.5</button></div>
     </div>
     </div>
      <!--设备运行状态-->
@@ -52,8 +59,32 @@ export default {
   },
 }
 
+  // 数值表
+//     option = {
+//     tooltip : {
+//         formatter: "{a} <br/>{b} : {c}%"
+//     },
+//     toolbox: {
+//         feature: {
+//             restore: {},
+//             saveAsImage: {}
+//         }
+//     },
+//     series: [
+//         {
+//             name: '业务指标',
+//             type: 'gauge',
+//             detail: {formatter:'{value}%'},
+//             data: [{value: 50, name: '完成率'}]
+//         }
+//     ]
+// };
 
 
+// setInterval(function () {
+//     option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+//     myChart.setOption(option, true);
+// },2000);
 </script>
 <style scoped>
   .el-carousel__item h3 {

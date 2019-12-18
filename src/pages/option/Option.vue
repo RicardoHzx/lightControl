@@ -1,6 +1,9 @@
 <template>
-    <div class="option" :style="n">
-    12983712973128973128973927192837777777712333
+    <div class="option" :style="n" ref='opt'>
+      <div>
+        <!-- 透明按钮 -->
+        <button style="background: none;border:none;margin-top:10%;margin-left:4%" onclik="">我在这里 成品以后会用nbsp代替</button>
+      </div>
     </div> 
 </template>
 <script>
@@ -12,21 +15,19 @@ export default {
        backgroundPostion:"center center",
        backgroundRepeat:"no-repeat",
        backgroundSize: "cover",
+      //  height:""
        
-     },
-      data1:"",
-      data2:"",
+     }
     }
   },
+  // 动态获取设置高度
+    mounted(){
+       console.log(this.$refs.opt.style.height=window.innerHeight-95+"px");
+    }
+    
 }
-
- 
 </script>
 <style scoped>
-.option{
-  height: 100%;
-  width: 100%;
- background: red;
-}
+
 
 </style>
