@@ -139,6 +139,19 @@ export const asyncRoutes = [
         path: 'model',
         component: () => import('@/pages/model/Model'),
         name: 'model',
+        meta: { title: '模式', icon: 'icon', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/sensor',
+    component: Layout,
+    redirect: '/sensor/Sensor',
+    children: [
+      {
+        path: 'sensor',
+        component: () => import('@/pages/sensor/Sensor'),
+        name: 'sensor',
         meta: { title: '传感器', icon: 'icon', noCache: true }
       }
     ]
