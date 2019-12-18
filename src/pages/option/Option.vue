@@ -1,23 +1,25 @@
 <template>
-    <div class="option">
+    <div class="option" :style="note">
        
-        
-    </div>
+      </div>  
+    
 </template>
 <script>
 export default {
   data(){
     return {
-     
+     note:{
+       backgroundImage:"url(" + require("../../assets/u3.jpg")+ ")",
+       backgroundRepeat:"no-repeat",
+       backgroundSize: "25px auto",
+       marginTop:"5px",
+     }
     }
   },
 }
+
+ 
 </script>
 <style scoped>
-.option{
-  background-image:url("C:\Users\14270\Desktop\u3.jpg");
- /* background: red;*/
-  width: 100%;
-  height: 900px;
-}
+
 </style>
