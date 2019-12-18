@@ -2,8 +2,9 @@
     <div class="home">
         <!-- 轮播图 -->
          <el-carousel indicator-position="outside">
-            <el-carousel-item v-for="item in 4" :key="item">
-            <h3>{{ item }}</h3>
+            <el-carousel-item v-for="item in img_list" :key="item">
+            <img :src="item" alt="">
+            <!-- <h3>{{ item }}</h3> -->
             </el-carousel-item>a
          </el-carousel>
 
@@ -37,7 +38,16 @@
 export default {
   data(){
     return {
-     
+     img_list:[
+      require("../../assets/u51.jpg"),
+      require("../../assets/u52.jpg"),
+      require("../../assets/u53.jpg"),
+      require("../../assets/u54.jpg"),
+      require("../../assets/u55.jpg"),
+      require("../../assets/u56.jpg")
+      
+       
+     ]
     }
   },
 }
@@ -47,7 +57,6 @@ export default {
 </script>
 <style scoped>
   .el-carousel__item h3 {
-    color: #475669;
     font-size: 18px;
     opacity: 0.75;
     line-height: 300px;
@@ -61,15 +70,19 @@ export default {
   .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
   }
+  img{
+    width: 100%;
+    height: inherit;
+  }
   #a{
     position: absolute;
-    background: rgb(189, 72, 159);
+    border: gray 3px solid;
     height: 250px;
     width: 55%;
 }
 #b{
    position: absolute;
-    background:pink;
+    border: gray 3px solid;
     float: left;
    
     margin-left: 58%;
@@ -78,7 +91,7 @@ export default {
 }
 #c{
     position: absolute;
-    background:beige;
+   border: gray 3px solid;
     height: 200px;
     width: 100%;
     
@@ -106,7 +119,7 @@ export default {
 }
 #run{
 position: absolute;
-background: red;
+border: gray 3px solid;
 height: 50px;
 width: 100%;
 margin-top: 200px;

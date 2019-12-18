@@ -1,19 +1,21 @@
 <template>
-    <div class="option" :style="note">
-       
-      </div>  
-    
+    <div class="option" :style="n">
+    12983712973128973128973927192837777777712333
+    </div> 
 </template>
 <script>
 export default {
   data(){
     return {
-     note:{
+     n:{
        backgroundImage:"url(" + require("../../assets/u3.jpg")+ ")",
+       backgroundPostion:"center center",
        backgroundRepeat:"no-repeat",
-       backgroundSize: "25px auto",
-       marginTop:"5px",
-     }
+       backgroundSize: "cover",
+       
+     },
+      data1:"",
+      data2:"",
     }
   },
 }
@@ -21,5 +23,10 @@ export default {
  
 </script>
 <style scoped>
+.option{
+  height: 100%;
+  width: 100%;
+ background: red;
+}
 
 </style>
