@@ -4,7 +4,6 @@
          <el-carousel indicator-position="outside">
             <el-carousel-item v-for="item in img_list" :key="item">
             <img :src="item" alt="">
-            <!-- <h3>{{ item }}</h3> -->
             </el-carousel-item>a
          </el-carousel>
 
@@ -18,13 +17,17 @@
         </div>
         </div>
       <p></p>
-       <!-- 室内信息-->id
+       <!-- 室内信息-->
+       <!-- <div class="tableTitle"><span class="midText"> 室内信息</span></div> -->
     <div id="c">
-    <div><p>室内:</p></div>
-    <div>
+      <div class="tableTitle"><span class="midText"> 室内信息</span></div>
+      <div id="myChart1" :style="{width: '400px', height: '400px'}"></div>
+      <div id="myChart2" :style="{width: '400px', height: '400px'}"></div>
+      <div id="myChart3" :style="{width: '400px', height: '400px'}"></div>
+    </div>
 
-      <!-- 模拟数值表插入 -->
-    <div id="tooltip"></div>
+      <!-- 模拟数值表插入 --> 
+    <!-- <div id="tooltip"></div>
 
     <div class="e2"><p id="c4">%23
       </p><button type="button" onclick='document.getElementById("c4").innerHTML="湿度已经插入"'>
@@ -33,16 +36,22 @@
       </p><button type="button" onclick='document.getElementById("c5").innerHTML="PM2.5已经插入"'>
         点击我查询PM2.5</button></div>
     </div>
-    </div>
+    </div> -->
      <!--设备运行状态-->
-    <div id="run">
-     设备运行状态
-    </div>
+     <el-divider content-position="left">.</el-divider>
+      <div id="run">
+       <div class="tableTitle"><span class="midText"> 设备运行状态</span></div>
+        
+      </div>
 
-       </div>
+  </div>
 </template>
 <script>
+
+
+
 export default {
+  neme:"home",
   data(){
     return {
      img_list:[
@@ -51,40 +60,74 @@ export default {
       require("../../assets/u53.jpg"),
       require("../../assets/u54.jpg"),
       require("../../assets/u55.jpg"),
-      require("../../assets/u56.jpg")
-      
-       
-     ]
+      require("../../assets/u56.jpg")  
+     ],   
     }
   },
-}
+   mounted () {
+      let that = this
+      this.drawLine();
+    },
+  methods:{
+      drawLine(){
+        // 基于准备好的dom，初始化echarts实例
+        let myChart1 = this.$echarts.init(document.getElementById('myChart1'))
+        let myChart2 = this.$echarts.init(document.getElementById('myChart2'))
+        let myChart3 = this.$echarts.init(document.getElementById('myChart3'))
+        // 绘制图表
+        var option1 = {
+            tooltip : {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            series: [
+                {
+                    name: '室内温度',
+                    type: 'gauge',
+                    detail: {formatter:'{value}%'},
+                    data: [{value: 50, name: '温度'}]
+                }
+            ]
+        };
+        myChart1.setOption(option1)
+        // 湿度
+        var option2 = {
+            tooltip : {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            series: [
+                {
+                    name: '室内湿度',
+                    type: 'gauge',
+                    detail: {formatter:'{value}%'},
+                    data: [{value: 50, name: '湿度'}]
+                }
+            ]
+        };
+        myChart2.setOption(option2)
+        //PM2.5
+        var option3 = {
+            tooltip : {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            series: [
+                {
+                    name: '室内PM2.5',
+                    type: 'gauge',
+                    detail: {formatter:'{value}%'},
+                    data: [{value: 50, name: 'PM2.5'}]
+                }
+            ]
+        };
+        myChart3.setOption(option3)
 
-  // 数值表
-//     option = {
-//     tooltip : {
-//         formatter: "{a} <br/>{b} : {c}%"
-//     },
-//     toolbox: {
-//         feature: {
-//             restore: {},
-//             saveAsImage: {}
-//         }
-//     },
-//     series: [
-//         {
-//             name: '业务指标',
-//             type: 'gauge',
-//             detail: {formatter:'{value}%'},
-//             data: [{value: 50, name: '完成率'}]
-//         }
-//     ]
-// };
+        setInterval(function () {
+            option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+            myChart.setOption(option, true);
+        },2000);
+      }
+    }
+  }
 
-
-// setInterval(function () {
-//     option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
-//     myChart.setOption(option, true);
-// },2000);
 </script>
 <style scoped>
   .el-carousel__item h3 {
@@ -105,6 +148,24 @@ export default {
     width: 100%;
     height: inherit;
   }
+  .tableTitle {
+    position: relative;
+    margin: 50px auto;
+    width: 600px;
+    height: 1px;
+    background-color: #d4d4d4;
+    text-align: center;
+    font-size: 24px;
+    color: rgba(101, 101, 101, 1);
+  }
+ .midText {
+    position: absolute;
+    left: 50%;
+    background-color: #ffffff;
+    padding: 0 15px;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
   #a{
     position: absolute;
     border: gray 3px solid;
@@ -121,15 +182,24 @@ export default {
     height: 250px;
 }
 #c{
-    position: absolute;
-   border: gray 3px solid;
+    /* position: absolute;
+    border: gray 3px solid;
     height: 200px;
+    width: 100%; */
     width: 100%;
-    
+    height: 400px;
+    float: left;
+}
+#myChart1{
+  float: left;
+}
+#myChart2{
+  float: left;
+}
+#myChart3{
+  float: left;
 }
 #f{
-
- 
   width: 100%;
   height: 250px;
 }
@@ -148,13 +218,13 @@ export default {
     float: left;
    
 }
-#run{
+/* #run{
 position: absolute;
 border: gray 3px solid;
 height: 50px;
 width: 100%;
 margin-top: 200px;
-}
+} */
 
 
 </style>
