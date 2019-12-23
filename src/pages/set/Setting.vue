@@ -1,8 +1,13 @@
 <template>
+<<<<<<< HEAD
   <div class="setting">
     <div id="left">
     <div>
       <p>请选择你需要的场景模式</p>
+=======
+    <div class="setting">
+       
+>>>>>>> e8eae51e70dd28c600d0781baaa4c8f552c253ed
     </div>
   <el-dropdown>
   <span class="el-dropdown-link">
