@@ -10,25 +10,30 @@
 
         <!-- 仪表盘 -->
         <div id="f">
+          <!-- 折线图的插入地方 -->
         <div id="a"><p class="c1">昆山天气情况:</p></div>
         <div id="b"><p class="c1">天气信息为:
+          <!-- 动态获取网络资源 -->
         <button type="button" onclick='document.getElementById("c2").innerHTML="信息已经插入"'>
         点击我查询天气信息
         </button></p>
         </div>
         </div>
+
       <p></p>
+
        <!-- 室内信息-->id
     <div id="c">
     <div><p>室内:</p></div>
     <div>
 
-      <!-- 模拟数值表插入 -->
+      <!-- 模拟数值表插入位置 -->
     <div id="tooltip"></div>
-
+      <!-- 模拟数值表插入位置 -->
     <div class="e2"><p id="c4">%23
       </p><button type="button" onclick='document.getElementById("c4").innerHTML="湿度已经插入"'>
         点击我查询湿度</button></div>
+      <!-- 模拟数值表插入位置 -->
     <div class="e3"><p id="c5">3/m³
       </p><button type="button" onclick='document.getElementById("c5").innerHTML="PM2.5已经插入"'>
         点击我查询PM2.5</button></div>
@@ -36,10 +41,10 @@
     </div>
      <!--设备运行状态-->
     <div id="run">
+      <!-- 如果可以得到传感器的数值即返回正常反之亦然 -->
      设备运行状态
     </div>
-
-       </div>
+</div>
 </template>
 <script>
 export default {
@@ -59,7 +64,25 @@ export default {
   },
 }
 
-  // 数值表
+//折线图
+
+// option = {
+//     xAxis: {
+//         type: 'category',
+//         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+//     },
+//     yAxis: {
+//         type: 'value'
+//     },
+//     series: [{
+//         data: [820, 932, 901, 934, 1290, 1330, 1320],
+//         type: 'line'
+//     }]
+// };
+
+
+// 数值表
+
 //     option = {
 //     tooltip : {
 //         formatter: "{a} <br/>{b} : {c}%"
