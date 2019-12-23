@@ -34,6 +34,7 @@
     <footer>
         <p>在线时间</p>
     </footer>
+   
     
     </div>
 </template>
@@ -61,7 +62,6 @@ export default {
 }
 .b{
   position: absolute;
-
   width: 10%;
 }
 .b1{
@@ -114,5 +114,9 @@ footer{
     width: 5%;
    position: absolute;
    margin-top: 20%;
+}
+#sensor{
+    height: 100%;
+    width: 100%;
 }
 </style>
