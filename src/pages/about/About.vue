@@ -3,6 +3,11 @@
     <div>
       <!-- 缺少跳转 样式 -->
       <button >我是返回按钮</button>
+      
+      <!-- 文字输入文本框 -->
+      <div id="a">
+      <p class="b">此处输入文字部分</p>
+      </div>
     </div>
 
         
@@ -30,5 +35,10 @@ export default {
 }
 </script>
 <style scoped>
-
+#a{
+  background: white;
+  margin-left: 40%;
+  height: 100px;
+  width: 10%;
+}
 </style>

@@ -177,4 +177,8 @@ footer {
   position: absolute;
   margin-top: 20%;
 }
+#sensor{
+    height: 100%;
+    width: 100%;
+}
 </style>
