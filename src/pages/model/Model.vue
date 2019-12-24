@@ -42,8 +42,8 @@
 </el-row>
 
 <el-row class="a">
-  <el-button type="primary" round style="height:160px;width:220px">灯光全开</el-button>
-  <el-button type="primary" round style="height:160px;width:220px">灯光全关</el-button>
+  <el-button type="primary" round style="height:160px;width:220px" @click='openLightAll'>灯光全开</el-button>
+  <el-button type="primary" round style="height:160px;width:220px" @click='closeLightAll'>灯光全关</el-button>
   <el-button type="primary" round style="height:160px;width:220px">空调打开</el-button>
 </el-row>
 <el-row class="a">
@@ -57,6 +57,8 @@
         
 </template>
 <script>
+import {mapState,mapActions,mapGetters} from 'vuex'
+
  export default {
     data() {
       return {
@@ -81,7 +83,29 @@
         num: '1'
       }],
       };
-    }
+    }, 
+    created(){
+    
+    },
+    computed:{
+      
+    },
+    methods:{
+      ...mapActions('model',['openLight','closeLight']),
+
+      openLightAll(){
+        // this.openLight();
+        this.closeLight();
+
+        console.log("aaaaaaaaaa")
+      },
+      closeLightAll(){
+        // this.closeLight();
+        this.openLight();
+
+        console.log("aaaaaaaaaa")
+      },
+    },
   };
 
 </script>
