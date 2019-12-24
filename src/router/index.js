@@ -133,13 +133,22 @@ export const asyncRoutes = [
   {
     path: '/model',
     component: Layout,
+    alwaysShow:true,
     redirect: '/model/Model',
+    name:"model",
+    meta: { title: '模式', icon: 'icon', noCache: true },
     children: [
       {
         path: 'model',
         component: () => import('@/pages/model/Model'),
         name: 'model',
-        meta: { title: '模式', icon: 'icon', noCache: true }
+        meta: { title: '情景模式', icon: 'icon', noCache: true }
+      },
+      {
+        path: 'mymodel',
+        component: () => import('@/pages/model/Mymodel'),
+        name: 'mymodel',
+        meta: { title: '我的模式', icon: 'icon', noCache: true }
       }
     ]
   },

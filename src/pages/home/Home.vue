@@ -21,9 +21,9 @@
        <!-- <div class="tableTitle"><span class="midText"> 室内信息</span></div> -->
     <div id="c">
       <div class="tableTitle"><span class="midText"> 室内信息</span></div>
-      <div id="myChart1" :style="{width: '400px', height: '400px'}"></div>
-      <div id="myChart2" :style="{width: '400px', height: '400px'}"></div>
-      <div id="myChart3" :style="{width: '400px', height: '400px'}"></div>
+      <div id="myChart" style="height:200px;width:800px"></div>
+      <!-- <div id="myChart2" :style="{width: '400px', height: '400px'}"></div>
+      <div id="myChart3" :style="{width: '400px', height: '400px'}"></div> -->
     </div>
 
       <!-- 模拟数值表插入 --> 
@@ -41,7 +41,6 @@
      <el-divider content-position="left">.</el-divider>
       <div id="run">
        <div class="tableTitle"><span class="midText"> 设备运行状态</span></div>
-        
       </div>
 
   </div>
@@ -69,61 +68,200 @@ export default {
       this.drawLine();
     },
   methods:{
+    
       drawLine(){
         // 基于准备好的dom，初始化echarts实例
-        let myChart1 = this.$echarts.init(document.getElementById('myChart1'))
-        let myChart2 = this.$echarts.init(document.getElementById('myChart2'))
-        let myChart3 = this.$echarts.init(document.getElementById('myChart3'))
-        // 绘制图表
+        let myChart = this.$echarts.init(document.getElementById('myChart'))
+        // let myChart2 = this.$echarts.init(document.getElementById('myChart2'))
+        // let myChart3 = this.$echarts.init(document.getElementById('myChart3'))
+        var dataStyle = {
+            normal: {
+                label: {
+                    show: false
+                },
+                labelLine: {
+                    show: false
+                },
+                shadowBlur: 0,
+                shadowColor: '#203665'
+            }
+        };
         var option1 = {
-            tooltip : {
-                formatter: "{a} <br/>{b} : {c}%"
-            },
-            series: [
-                {
-                    name: '室内温度',
-                    type: 'gauge',
-                    detail: {formatter:'{value}%'},
-                    data: [{value: 50, name: '温度'}]
-                }
-            ]
-        };
-        myChart1.setOption(option1)
-        // 湿度
-        var option2 = {
-            tooltip : {
-                formatter: "{a} <br/>{b} : {c}%"
-            },
-            series: [
-                {
-                    name: '室内湿度',
-                    type: 'gauge',
-                    detail: {formatter:'{value}%'},
-                    data: [{value: 50, name: '湿度'}]
-                }
-            ]
-        };
-        myChart2.setOption(option2)
-        //PM2.5
-        var option3 = {
-            tooltip : {
-                formatter: "{a} <br/>{b} : {c}%"
-            },
-            series: [
-                {
-                    name: '室内PM2.5',
-                    type: 'gauge',
-                    detail: {formatter:'{value}%'},
-                    data: [{value: 50, name: 'PM2.5'}]
-                }
-            ]
-        };
-        myChart3.setOption(option3)
+          series: [{
+              name: '第一个圆环',
+              type: 'pie',
+              clockWise: false,
+              radius: [70, 80],
+              itemStyle: dataStyle,
+              hoverAnimation: false,
+              center: ['15%', '50%'],
+              data: [{
+                  value: 25,
+                  label: {
+                      normal: {
+                          rich: {
+                              a: {
+                                  color: '#3a7ad5',
+                                  align: 'center',
+                                  fontSize: 20,
+                                  fontWeight: "bold"
+                              },
+                              b: {
+                                  color: '#fff',
+                                  align: 'center',
+                                  fontSize: 16
+                              }
+                          },
+                          formatter: function(params){
+                              return "{b|在线统计}\n\n"+"{a|"+params.value+"个}"+"\n\n{b|增长2%}";
+                          },
+                          position: 'center',
+                          show: true,
+                          textStyle: {
+                              fontSize: '14',
+                              fontWeight: 'normal',
+                              color: '#fff'
+                          }
+                      }
+                  },
+                  itemStyle: {
+                      normal: {
+                          color: '#2c6cc4',
+                          shadowColor: '#2c6cc4',
+                          shadowBlur: 0
+                      }
+                  }
+              }, {
+                  value: 75,
+                  name: 'invisible',
+                  itemStyle: {
+                      normal: {
+                          color: '#24375c'
+                      },
+                      emphasis: {
+                          color: '#24375c'
+                      }
+                  }
+              }]
+          }, {
+              name: '第二个圆环',
+              type: 'pie',
+              clockWise: false,
+              radius: [70, 80],
+              itemStyle: dataStyle,
+              hoverAnimation: false,
+              center: ['50%', '50%'],
+              data: [{
+                  value: 50,
+                  label: {
+                      normal: {
+                          rich: {
+                              a: {
+                                  color: '#d03e93',
+                                  align: 'center',
+                                  fontSize: 20,
+                                  fontWeight: "bold"
+                              },
+                              b: {
+                                  color: '#fff',
+                                  align: 'center',
+                                  fontSize: 16
+                              }
+                          },
+                          formatter: function(params){
+                              return "{b|离线统计}\n\n"+"{a|"+params.value+"个}"+"\n\n{b|增长2%}";
+                          },
+                          position: 'center',
+                          show: true,
+                          textStyle: {
+                              fontSize: '14',
+                              fontWeight: 'normal',
+                              color: '#fff'
+                          }
+                      }
+                  },
+                  itemStyle: {
+                      normal: {
+                          color: '#ef45ac',
+                          shadowColor: '#ef45ac',
+                          shadowBlur: 0
+                      }
+                  }
+              }, {
+                  value: 50,
+                  name: 'invisible',
+                  itemStyle: {
+                      normal: {
+                          color: '#412a4e'
+                      },
+                      emphasis: {
+                          color: '#412a4e'
+                      }
+                  }
+              }]
+          }, {
+              name: '第三个圆环',
+              type: 'pie',
+              clockWise: false,
+              radius: [70, 80],
+              itemStyle: dataStyle,
+              hoverAnimation: false,
+              center: ['85%', '50%'],
+              data: [{
+                  value: 75,
+                  label: {
+                      normal: {
+                          rich: {
+                              a: {
+                                  color: '#603dd0',
+                                  align: 'center',
+                                  fontSize: 20,
+                                  fontWeight: "bold"
+                              },
+                              b: {
+                                  color: '#fff',
+                                  align: 'center',
+                                  fontSize: 16
+                              }
+                          },
+                          formatter: function(params){
+                              return "{b|缺报统计}\n\n"+"{a|"+params.value+"个}"+"\n\n{b|增长2%}";
+                          },
+                          position: 'center',
+                          show: true,
+                          textStyle: {
+                              fontSize: '14',
+                              fontWeight: 'normal',
+                              color: '#fff'
+                          }
+                      }
+                  },
+                  itemStyle: {
+                      normal: {
+                          color: '#613fd1',
+                          shadowColor: '#613fd1',
+                          shadowBlur: 0
+                      }
+                  }
+              }, {
+                  value: 25,
+                  name: 'invisible',
+                  itemStyle: {
+                      normal: {
+                          color: '#453284'
+                      },
+                      emphasis: {
+                          color: '#453284'
+                      }
+                  }
+              }]
+          }]
+      }
+        
+        myChart.setOption(option1)
+       
+       
 
-        setInterval(function () {
-            option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
-            myChart.setOption(option, true);
-        },2000);
       }
     }
   }
