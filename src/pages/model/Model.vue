@@ -44,12 +44,12 @@
 <el-row class="a">
   <el-button type="primary" round style="height:160px;width:220px" @click='openLightAll'>灯光全开</el-button>
   <el-button type="primary" round style="height:160px;width:220px" @click='closeLightAll'>灯光全关</el-button>
-  <el-button type="primary" round style="height:160px;width:220px">空调打开</el-button>
+  <el-button type="primary" round style="height:160px;width:220px" @click='openAirAll'>空调打开</el-button>
 </el-row>
 <el-row class="a">
-  <el-button type="primary" round style="height:160px;width:220px">空调关闭</el-button>
-  <el-button type="primary" round style="height:160px;width:220px">窗帘打开</el-button>
-  <el-button type="primary" round style="height:160px;width:220px">窗帘关闭</el-button>
+  <el-button type="primary" round style="height:160px;width:220px" @click='closeAirAll'>空调关闭</el-button>
+  <el-button type="primary" round style="height:160px;width:220px" @click='openWindowAll'>窗帘打开</el-button>
+  <el-button type="primary" round style="height:160px;width:220px" @click='closeWindowAll'>窗帘关闭</el-button>
 </el-row>
 
 
@@ -62,9 +62,9 @@ import {mapState,mapActions,mapGetters} from 'vuex'
  export default {
     data() {
       return {
-       table: false,
-      dialog: false,
-      loading: false,
+      //  table: false,
+      // dialog: false,
+      // loading: false,
       gridData: [{
         date: '2019-12-13',
         name: '胡壮杰',
@@ -91,7 +91,7 @@ import {mapState,mapActions,mapGetters} from 'vuex'
       
     },
     methods:{
-      ...mapActions('model',['openLight','closeLight']),
+      ...mapActions('model',['openLight','closeLight','openAir','closeAir','openWindow','closeWindow']),
 
       openLightAll(){
         // this.openLight();
@@ -103,6 +103,26 @@ import {mapState,mapActions,mapGetters} from 'vuex'
         // this.closeLight();
         this.openLight();
 
+        console.log("aaaaaaaaaa")
+      },
+      openAirAll(){
+        
+        this.closeAir();
+        console.log("aaaaaaaaaa")
+      },
+      closeAirAll(){
+       
+        this.openAir();
+        console.log("aaaaaaaaaa")
+      },
+       openWindowAll(){
+       
+        this.closeWindow();
+        console.log("aaaaaaaaaa")
+      },
+       closeWindowAll(){
+       
+        this.openWindow();
         console.log("aaaaaaaaaa")
       },
     },

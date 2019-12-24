@@ -1,9 +1,7 @@
 <template>
     <div class="option" :style="n" ref='opt'>
       <div>
-        <!-- 透明按钮 -->
-        <!-- <button style="background: none;border:none;margin-top:10%;margin-left:4%" onclik="">我在这里 成品以后会用nbsp代替</button> -->
-        <el-button type="text"  id="butt"  @click="dialogVisible = true">&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+        <el-button type="text"  id="butt"  @click="dialogVisible = true">11111&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="提示"
         :visible.sync="dialogVisible"
@@ -11,8 +9,8 @@
         :before-close="handleClose">
         <span>选择你需要的操作</span>
         <span slot="footer" class="dialog-footer">
-          <el-button @click="dialogVisible = false">关 闭</el-button>
-          <el-button type="primary" @click="dialogVisible = false">开启灯光</el-button>
+          <el-button  @click="dialogVisible = false">关 闭</el-button>
+          <el-button  type="primary" @click="dialogVisible = false">开启灯光</el-button>
         </span>
       </el-dialog>
 
@@ -25,7 +23,7 @@
         <span>选择你需要的操作</span>
         <span slot="footer" class="dialog-footer">
           <el-button @click="dialogVisible = false">关 闭</el-button>
-          <el-button type="primary" @click="dialogVisible = false">开启灯光</el-button>
+          <el-button type="primary" @click="dialogVisible = false;openLight" >开启灯光</el-button>
         </span>
       </el-dialog>
 
@@ -93,11 +91,14 @@
           <el-button type="primary" @click="dialogVisible = false">开启灯光</el-button>
         </span>
       </el-dialog>
-
       </div>
+      
+      <!-- 测试按钮 -->
+      <el-button @click='openLight'>dianjiwo</el-button>
     </div> 
 </template>
 <script>
+import {mapState,mapActions,mapGetters} from 'vuex'
 export default {
   neme:"option",
   data(){
@@ -114,17 +115,62 @@ export default {
   },
 
 // 动态获取设置高度
-    mounted(){
+ mounted(){
        console.log(this.$refs.opt.style.height=window.innerHeight-95+"px");
     },
-    methods: {
-      handleClose(done) {
+//数据获取
+   created(){
+
+    },
+    computed:{
+      
+    },
+   
+    methods:{
+      ...mapActions('option',['openLight1','closeLight1','openLight2','closeLight2','openRgb1','closeRgb1','openRgb2','closeRgb2']),
+      openLight(){
+        this.closeLight1();
+        console.log("aaaaaaaaaa")
+      },
+      closeLight(){
+        this.openLight1();
+        console.log("aaaaaaaaaa")
+      },
+
+         openLightT(){
+        this.closeLight2();
+        console.log("aaaaaaaaaa")
+      },
+      closeLightT(){
+        this.openLight2();
+        console.log("aaaaaaaaaa")
+      },
+      openRgb(){
+        this.closeRgb1();
+        console.log("aaaaaaaaaa")
+      },
+      closeRgb(){
+        this.openRgb1();
+        console.log("aaaaaaaaaa")
+      },
+
+      openRgbT(){
+        this.closeRgb2();
+        console.log("aaaaaaaaaa")
+      },
+      closeRgbT(){
+        this.openRgb2();
+        console.log("aaaaaaaaaa")
+      }, 
+    },
+    methods:{
+       handleClose(done) {
         this.$confirm('确认关闭？')
           .then(_ => {
             done();
           })
           .catch(_ => {});
-      }
+      } 
     }
   };
 </script>
