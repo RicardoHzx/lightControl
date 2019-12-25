@@ -9,37 +9,36 @@
        >
         <span>选择你需要的操作</span>
         <span slot="footer" class="dialog-footer">
-          <el-button  @click="dialogVisible1 = false">关 闭</el-button>
+          <el-button  @click="closeLight">关 闭</el-button>
           <el-button  type="primary" @click="openLight">开启灯光</el-button>
         </span>
       </el-dialog>
 
-      <el-button type="text"  id="butt1"  @click="dialogVisible = true">2222&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+      <el-button type="text"  id="butt1"  @click="dialogVisible2 = true">2222&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="提示"
-        :visible.sync="dialogVisible"
+        :visible.sync="dialogVisible2"
         width="30%"
         >
         <span>选择你需要的操作</span>
         <span slot="footer" class="dialog-footer">
-          <el-button @click="dialogVisible = false">关 闭</el-button>
-          <el-button type="primary" @click="dialogVisible = false">开启灯光</el-button>
+          <el-button @click="closeLight">关 闭</el-button>
+          <el-button type="primary" @click="openLight">开启灯光</el-button>
         </span>
       </el-dialog>
 
-      <el-button type="text"  id="butt2"  @click="dialogVisible = true">3333&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+      <el-button type="text"  id="butt2"  @click="dialogVisible3 = true">3333&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="提示"
-        :visible.sync="dialogVisible"
+        :visible.sync="dialogVisible3"
         width="30%"
         >
         <span>选择你需要的操作</span>
         <span slot="footer" class="dialog-footer">
-          <el-button @click="dialogVisible = false">关 闭</el-button>
-          <el-button type="primary" @click="dialogVisible = false">开启灯光</el-button>
+          <el-button @click="closeLight">关 闭</el-button>
+          <el-button type="primary" @click="openLight">开启灯光</el-button>
         </span>
       </el-dialog>
-
 
       <el-button type="text"  id="butt3" @click="a = true">444444&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
@@ -95,6 +94,8 @@ export default {
         value6: 0,
       dialogVisible: false,
       dialogVisible1:false,
+      dialogVisible2:false,
+      dialogVisible3:false,
       a:false,
       b:false
     };
@@ -116,8 +117,7 @@ export default {
       ...mapActions('option',['openLight1','closeLight1','openLight2','closeLight2','openRgb1','closeRgb1','openRgb2','closeRgb2']),
     
       openLight(){
-        
-        //this.closeLight1();
+                 //this.closeLight1();
         console.log("bbb")
       },
       closeLight(){
