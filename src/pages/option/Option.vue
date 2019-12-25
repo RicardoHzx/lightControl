@@ -1,38 +1,25 @@
 <template>
     <div class="option" :style="n" ref='opt'>
       <div>
-        <el-button type="text"  id="butt"  @click="dialogVisible = true">11111&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+        <el-button type="text"  id="butt"  @click="dialogVisible1 = true">1111&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="提示"
-        :visible.sync="dialogVisible"
+        :visible.sync="dialogVisible1"
         width="30%"
-        :before-close="handleClose">
+       >
         <span>选择你需要的操作</span>
         <span slot="footer" class="dialog-footer">
-          <el-button  @click="dialogVisible = false">关 闭</el-button>
-          <el-button  type="primary" @click="dialogVisible = false">开启灯光</el-button>
+          <el-button  @click="dialogVisible1 = false">关 闭</el-button>
+          <el-button  type="primary" @click="openLight">开启灯光</el-button>
         </span>
       </el-dialog>
 
-      <el-button type="text"  id="butt1"  @click="dialogVisible = true">&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+      <el-button type="text"  id="butt1"  @click="dialogVisible = true">2222&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="提示"
         :visible.sync="dialogVisible"
         width="30%"
-        :before-close="handleClose">
-        <span>选择你需要的操作</span>
-        <span slot="footer" class="dialog-footer">
-          <el-button @click="dialogVisible = false">关 闭</el-button>
-          <el-button type="primary" @click="dialogVisible = false;openLight" >开启灯光</el-button>
-        </span>
-      </el-dialog>
-
-      <el-button type="text"  id="butt2"  @click="dialogVisible = true">&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
-        <el-dialog
-        title="提示"
-        :visible.sync="dialogVisible"
-        width="30%"
-        :before-close="handleClose">
+        >
         <span>选择你需要的操作</span>
         <span slot="footer" class="dialog-footer">
           <el-button @click="dialogVisible = false">关 闭</el-button>
@@ -40,12 +27,12 @@
         </span>
       </el-dialog>
 
-      <el-button type="text"  id="butt3"  @click="dialogVisible = true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+      <el-button type="text"  id="butt2"  @click="dialogVisible = true">3333&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="提示"
         :visible.sync="dialogVisible"
         width="30%"
-        :before-close="handleClose">
+        >
         <span>选择你需要的操作</span>
         <span slot="footer" class="dialog-footer">
           <el-button @click="dialogVisible = false">关 闭</el-button>
@@ -53,54 +40,45 @@
         </span>
       </el-dialog>
 
-       <el-button type="text"  id="butt4"  @click="dialogVisible = true">&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+
+      <el-button type="text"  id="butt3" @click="a = true">444444&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
-        title="提示"
-        :visible.sync="dialogVisible"
+        title="灯带一"
+        :visible.sync="a"
         width="30%"
-        :before-close="handleClose">
-        <span>选择你需要的操作</span>
-        <span slot="footer" class="dialog-footer">
-          <el-button @click="dialogVisible = false">关 闭</el-button>
-          <el-button type="primary" @click="dialogVisible = false">开启灯光</el-button>
+        >
+        <span c="footer" class="dialog-footer">
+           <span class="demonstration">R:</span>
+           <el-slider v-model="value1" show-input  @change="change"></el-slider>
+            <span class="demonstration">G:</span>
+           <el-slider v-model="value2" show-input  @change="change"></el-slider>
+            <span class="demonstration">B:</span>
+           <el-slider v-model="value3" show-input  @change="change"></el-slider>
         </span>
       </el-dialog>
 
-       <el-button type="text"  id="butt5"  @click="dialogVisible = true">&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
-        <el-dialog
-        title="提示"
-        :visible.sync="dialogVisible"
-        width="30%"
-        :before-close="handleClose">
-        <span>选择你需要的操作</span>
-        <span slot="footer" class="dialog-footer">
-          <el-button @click="dialogVisible = false">关 闭</el-button>
-          <el-button type="primary" @click="dialogVisible = false">开启灯光</el-button>
-        </span>
-      </el-dialog>
 
-       <el-button type="text"  id="butt6"  @click="dialogVisible = true">&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+      <el-button type="text"  id="butt6" @click="b = true">7777&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
-        title="提示"
-        :visible.sync="dialogVisible"
+        title="灯带二"
+        :visible.sync="b"
         width="30%"
-        :before-close="handleClose">
-        <span>选择你需要的操作</span>
-        <span slot="footer" class="dialog-footer">
-          <el-button @click="dialogVisible = false">关 闭</el-button>
-          <el-button type="primary" @click="dialogVisible = false">开启灯光</el-button>
+        >
+        <span c="footer" class="dialog-footer">
+           <span class="demonstration">R:</span>
+           <el-slider v-model="value4" show-input  @change="change"></el-slider>
+            <span class="demonstration">G:</span>
+           <el-slider v-model="value5" show-input  @change="change"></el-slider>
+            <span class="demonstration">B:</span>
+           <el-slider v-model="value6" show-input  @change="change"></el-slider>
         </span>
       </el-dialog>
       </div>
-      
-      <!-- 测试按钮 -->
-      <el-button @click='openLight'>dianjiwo</el-button>
-    </div> 
+    </div>
 </template>
 <script>
 import {mapState,mapActions,mapGetters} from 'vuex'
 export default {
-  neme:"option",
   data(){
     return {
      n:{
@@ -108,74 +86,82 @@ export default {
        backgroundPostion:"center center",
        backgroundRepeat:"no-repeat",
        backgroundSize: "cover",
-      //  height:""
      },
-      dialogVisible: false
-    }
+      value1: 0,
+         value2: 40,
+        value3: 0,
+        value4: 0,
+        value5: 0,
+        value6: 0,
+      dialogVisible: false,
+      dialogVisible1:false,
+      a:false,
+      b:false
+    };
   },
-
-// 动态获取设置高度
+//动态获取设置高度
  mounted(){
        console.log(this.$refs.opt.style.height=window.innerHeight-95+"px");
     },
-//数据获取
-   created(){
+
+
+    created(){
 
     },
-    computed:{
-      
-    },
-   
+    computed:{ 
+
+    },  
+
     methods:{
       ...mapActions('option',['openLight1','closeLight1','openLight2','closeLight2','openRgb1','closeRgb1','openRgb2','closeRgb2']),
+    
       openLight(){
-        this.closeLight1();
-        console.log("aaaaaaaaaa")
+        
+        //this.closeLight1();
+        console.log("bbb")
       },
       closeLight(){
         this.openLight1();
-        console.log("aaaaaaaaaa")
+        console.log("bbb")
       },
 
-         openLightT(){
+      openLightT(){
         this.closeLight2();
-        console.log("aaaaaaaaaa")
+        console.log("bbb")
       },
       closeLightT(){
         this.openLight2();
-        console.log("aaaaaaaaaa")
+        console.log("bbb")
       },
       openRgb(){
         this.closeRgb1();
-        console.log("aaaaaaaaaa")
+        console.log("bbb")
       },
       closeRgb(){
         this.openRgb1();
-        console.log("aaaaaaaaaa")
+        console.log("bbb")
       },
 
       openRgbT(){
         this.closeRgb2();
-        console.log("aaaaaaaaaa")
+        console.log("bbb")
       },
       closeRgbT(){
         this.openRgb2();
-        console.log("aaaaaaaaaa")
+        console.log("bbb")
       }, 
-    },
-    methods:{
-       handleClose(done) {
-        this.$confirm('确认关闭？')
-          .then(_ => {
-            done();
-          })
-          .catch(_ => {});
-      } 
+
+
+       change(val){
+        console.log(this.form);
+        console.log(val)
+        
+     },
     }
   };
 </script>
-<style scoped>
 
+<style scoped>
 #butt{
   position: absolute;
   margin-left: 7%;
@@ -197,23 +183,11 @@ export default {
   margin-left: 49%;
   margin-top: 9.5%;
 }
-#butt4{
-   margin-left: 77%;
-  margin-top: 11%;
-  position: absolute;
 
-}
-#butt5{
-  margin-left: 83%;
-  margin-top: 10%;
-  position: absolute;
-
-}
 #butt6{
   margin-left: 92%;
   margin-top: 9%;
   position: absolute; 
 
 }
-
 </style>

@@ -6,9 +6,19 @@
            <article id="test">
           <div>
             <div class="b">
-              <p>当前状态</p>
+              <p>温度折线图</p>
             </div>
-            <div class="b1">内容</div>
+
+
+            <div class="b1">
+
+               
+
+            </div>
+
+
+
+
           </div>
           <div class="c">
             <p>事件日志</p>
@@ -75,28 +85,7 @@
        
       </el-tabs>
     </header>
-     
-    <!-- <div id="app">
-      <ul>
-        <li v-for="(item, index) in tabData">{{index}}--{{item}}</li>
-      </ul>
-    </div> -->
-
-    <!-- <article id="test">
-      <div>
-        <div class="b">
-          <p>当前状态</p>
-        </div>
-        <div class="b1">内容</div>
-      </div>
-      <div class="c">
-        <p>事件日志</p>
-        <div class="c1">内容</div>
-      </div>
-    </article> -->
-    <!-- <footer>
-      <p>在线时间</p>
-    </footer> -->
+ 
   </div>
 </template>
 
@@ -111,8 +100,25 @@ export default {
         }
       }
     };
-  }
+  },
+//   option:{
+//     xAxis: {
+//         type: 'category',
+//         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+//     },
+//     yAxis: {
+//         type: 'value'
+//     },
+//     series: [{
+//         data: [820, 932, 901, 934, 1290, 1330, 1320],
+//         type: 'line'
+//     }]
+// }
 };
+
+
+
+
 </script>
 <style scoped>
 .sensor {
@@ -126,20 +132,22 @@ export default {
   /* border: gray 3px solid; */
 }
 .b {
+  margin-left: 5%;
   position: absolute;
+  
   width: 10%;
 }
 .b1 {
   position: absolute;
   background: palevioletred;
-  width: 20%;
+  width: 50%;
   height: 550px;
   margin-top: 50px;
 }
 .c {
   float: right;
   height: 600px;
-  width: 70%;
+  width: 30%;
 }
 .c1 {
   width: 100%;

@@ -62,9 +62,9 @@ import {mapState,mapActions,mapGetters} from 'vuex'
  export default {
     data() {
       return {
-      //  table: false,
-      // dialog: false,
-      // loading: false,
+       table: false,
+      dialog: false,
+      loading: false,
       gridData: [{
         date: '2019-12-13',
         name: '胡壮杰',
@@ -91,37 +91,28 @@ import {mapState,mapActions,mapGetters} from 'vuex'
       
     },
     methods:{
-      ...mapActions('model',['openLight','closeLight','openAir','closeAir','openWindow','closeWindow']),
-
+      ...mapActions('model',['openlight','closeLight','openAir','closeAir','openWindow','closeWindow']),
       openLightAll(){
-        // this.openLight();
         this.closeLight();
-
         console.log("aaaaaaaaaa")
       },
       closeLightAll(){
-        // this.closeLight();
         this.openLight();
-
         console.log("aaaaaaaaaa")
       },
       openAirAll(){
-        
         this.closeAir();
         console.log("aaaaaaaaaa")
       },
       closeAirAll(){
-       
         this.openAir();
         console.log("aaaaaaaaaa")
       },
        openWindowAll(){
-       
         this.closeWindow();
         console.log("aaaaaaaaaa")
       },
        closeWindowAll(){
-       
         this.openWindow();
         console.log("aaaaaaaaaa")
       },

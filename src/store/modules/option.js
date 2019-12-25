@@ -1,6 +1,4 @@
 import { get } from '../../http/axios'
-
-
 export default {
     namespaced: true,
     state: {
@@ -11,7 +9,7 @@ export default {
     },
     actions: {
         async openLight1(context, data) {
-            let response = await get('/lightOpen')
+            let response = await get('/lightOpen/1')
             return response;
         },
         async closeLight1(context, data) {

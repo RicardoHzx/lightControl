@@ -7,22 +7,51 @@
   </el-form-item>
   <el-form-item label="触发条件">
     <el-select v-model="form.region" placeholder="请选择触发条件">
-      <el-option label="进入房间" value="1"></el-option>
-      <el-option label="离开房间" value="2"></el-option>
-      <el-option label="客人到访" value="3"></el-option>
-      <el-option label="工作" value="4"></el-option>
-      <el-option label="火灾" value="5"></el-option>
-      <el-option label="失窃" value="6"></el-option>
+      <el-option label="前门开" value="1"></el-option>
+      <el-option label="后门开" value="1"></el-option>
     </el-select>
   </el-form-item>
   <el-form-item label="触发设备">
     <el-checkbox-group v-model="form.type">
       <el-checkbox label="普通灯1" name="type"></el-checkbox>
       <el-checkbox label="普通灯2" name="type"></el-checkbox>
-      <el-checkbox label="灯带1" name="type"></el-checkbox>
-      <el-checkbox label="灯带2" name="type"></el-checkbox>
+      <el-checkbox label="普通灯2" name="type"></el-checkbox>
+      <el-checkbox label="窗帘开" name="type"></el-checkbox>
+      <el-checkbox label="窗帘关" name="type"></el-checkbox>
+      <el-checkbox label="空调开" name="type"></el-checkbox>
+      <el-checkbox label="空调关" name="type"></el-checkbox>
     </el-checkbox-group>
   </el-form-item>
+
+
+<el-form-item label="RGB调节">
+   <div class="block">
+      <span class="demonstration">R:</span>
+    <el-slider
+      v-model="val1"
+      show-input @change="change">
+    </el-slider>
+  </div>
+
+  <div class="block">
+    <span class="demonstration">G:</span>
+    <el-slider
+      v-model="val2"
+      show-input>
+    </el-slider>
+  </div>
+
+  <div class="block">
+   <span class="demonstration">B:</span>
+   <el-slider
+      v-model="val3"
+      show-input>
+    </el-slider>
+  </div>
+    
+
+   </el-form-item>
+
   <el-form-item label="模式描述">
     <el-input type="textarea" v-model="form.desc"></el-input>
   </el-form-item>
@@ -39,22 +68,41 @@
     data() {
       return {
         form: {
-          name: '',
+          name: 'liis',
           region: '',
           type: [],
           resource: '',
           desc: ''
-        }
+         
+        },
+         val1: 0,
+         val2: 40,
+        val3: 0
       }
+
+
+     
+
+
     },
     methods: {
       onSubmit() {
-        console.log('submit!');//.then(function(data){
-        //   alert
-        //})
+        console.log('submit!'); 
+      },
+     
+      change(val){
+        console.log(this.form);
+        console.log(val);
+        
+
+      },
+      
+      formatTooltip(val) {
+        return val / 100;
       }
     }
-  }
+ }
+  
 </script>
 <style scoped>
 
