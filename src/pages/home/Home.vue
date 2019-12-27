@@ -1,5 +1,5 @@
 <template>
-    <div class="home">
+    <div class="home" :style="ind" ref="opt2">
         <!-- 轮播图 -->
          <el-carousel indicator-position="outside">
             <el-carousel-item v-for="item in img_list" :key="item">
@@ -9,40 +9,30 @@
 
         <!-- 仪表盘 -->
         <div id="f">
-        <div id="a"><p class="c1">昆山天气情况:</p></div>
+        <div id="a">
+        <p style="font-size:30px;margin-top:-10px">房间数据情况:</p>
+
+         <div id="myChart2" :style="{width:'850px', height:'480px',top:'1%'}"></div>
+        
+        </div>
+
+
         <div id="b"><p class="c1">天气信息为:
         <button type="button" onclick='document.getElementById("c2").innerHTML="信息已经插入"'>
         点击我查询天气信息
         </button></p>
         </div>
+
         </div>
-      <p></p>
-       <!-- 室内信息-->
-       <!-- <div class="tableTitle"><span class="midText"> 室内信息</span></div> -->
-    <div id="c">
+     
+    <div id="butto">
       <div class="tableTitle"><span class="midText"> 室内信息</span></div>
       <div id="myChart" style="height:200px;width:800px"></div>
-      <!-- <div id="myChart2" :style="{width: '400px', height: '400px'}"></div>
-      <div id="myChart3" :style="{width: '400px', height: '400px'}"></div> -->
-    </div>
+    
 
-      <!-- 模拟数值表插入 --> 
-    <!-- <div id="tooltip"></div>
-
-    <div class="e2"><p id="c4">%23
-      </p><button type="button" onclick='document.getElementById("c4").innerHTML="湿度已经插入"'>
-        点击我查询湿度</button></div>
-    <div class="e3"><p id="c5">3/m³
-      </p><button type="button" onclick='document.getElementById("c5").innerHTML="PM2.5已经插入"'>
-        点击我查询PM2.5</button></div>
-    </div>
-    </div> -->
-     <!--设备运行状态-->
      <el-divider content-position="left">.</el-divider>
-      <div id="run">
-       <div class="tableTitle"><span class="midText"> 设备运行状态</span></div>
-      </div>
-
+   
+    </div>
   </div>
 </template>
 <script>
@@ -54,22 +44,111 @@ export default {
   data(){
     return {
      img_list:[
-      require("../../assets/u51.jpg"),
-      require("../../assets/u52.jpg"),
-      require("../../assets/u53.jpg"),
-      require("../../assets/u54.jpg"),
+      
+      require("../../assets/u15.jpg"),
+      require("../../assets/u15.jpg"),
       require("../../assets/u55.jpg"),
-      require("../../assets/u56.jpg")  
-     ],   
+      require("../../assets/u55.jpg"),
+     
+      
+     ],
+     
+     ind:{
+       backgroundImage:"url(" + require("../../assets/u18.jpg")+")",
+       backgroundPostion:"center center",
+       backgroundRepeat:"no-repeat",
+       backgroundSize: "cover",
+       height:'1000px'       
+       
+    }
     }
   },
+   
+       
+ 
    mounted () {
+
+        //console.log(this.$refs.opt2.style.height=window.innerHeight-95+"px");
       let that = this
       this.drawLine();
     },
   methods:{
     
       drawLine(){
+
+            // 基于准备好的dom，初始化echarts实例
+            var myChart2 = this.$echarts.init(document.getElementById('myChart2'))
+            // 绘制图表
+            myChart2.setOption({
+
+
+      title: {
+        text: '折线图堆叠'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['温度','湿度','风力','pm2.5','甲醛']
+    },
+    grid: {
+         left:'5%',
+         right: '3%',
+         bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['周一','周二','周三','周四','周五','周六','周日']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'温度',
+            type:'line',
+            stack: '总量',
+            data:[120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name:'湿度',
+            type:'line',
+            stack: '总量',
+            data:[220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+            name:'风力',
+            type:'line',
+            stack: '总量',
+            data:[150, 232, 201, 154, 190, 330, 410]
+        },
+        {
+            name:'pm2.5',
+            type:'line',
+            stack: '总量',
+            data:[320, 332, 301, 334, 390, 330, 320]
+        },
+        {
+            name:'甲醛',
+            type:'line',
+            stack: '总量',
+            data:[820, 932, 901, 934, 1290, 1330, 1320]
+        }
+    ]
+
+
+            }
+            );
+
+
+
         // 基于准备好的dom，初始化echarts实例
         let myChart = this.$echarts.init(document.getElementById('myChart'))
         // let myChart2 = this.$echarts.init(document.getElementById('myChart2'))
@@ -107,7 +186,7 @@ export default {
                                   fontWeight: "bold"
                               },
                               b: {
-                                  color: '#fff',
+                                  color: '#000000',
                                   align: 'center',
                                   fontSize: 16
                               }
@@ -163,7 +242,7 @@ export default {
                                   fontWeight: "bold"
                               },
                               b: {
-                                  color: '#fff',
+                                  color: '#000000',
                                   align: 'center',
                                   fontSize: 16
                               }
@@ -219,7 +298,7 @@ export default {
                                   fontWeight: "bold"
                               },
                               b: {
-                                  color: '#fff',
+                                  color: '#000000',
                                   align: 'center',
                                   fontSize: 16
                               }
@@ -280,7 +359,7 @@ export default {
   }
   
   .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
+    background-color: #d3dce6; 
   }
   img{
     width: 100%;
@@ -291,43 +370,34 @@ export default {
     margin: 50px auto;
     width: 600px;
     height: 1px;
-    background-color: #d4d4d4;
+    background-color: #ad1919;
     text-align: center;
     font-size: 24px;
     color: rgba(101, 101, 101, 1);
   }
  .midText {
+     margin-top: -5%;
     position: absolute;
-    left: 50%;
-    background-color: #ffffff;
+    left: 50%;  
+    background-color:none;
     padding: 0 15px;
     transform: translateX(-50%) translateY(-50%);
   }
 
   #a{
     position: absolute;
-    border: gray 3px solid;
-    height: 250px;
+    border-right: gray 3px dashed;
+    height: 580px;
     width: 55%;
 }
 #b{
    position: absolute;
-    border: gray 3px solid;
     float: left;
-   
     margin-left: 58%;
     width: 40%;
-    height: 250px;
-}
-#c{
-    /* position: absolute;
-    border: gray 3px solid;
     height: 200px;
-    width: 100%; */
-    width: 100%;
-    height: 400px;
-    float: left;
 }
+ 
 #myChart1{
   float: left;
 }
@@ -356,13 +426,13 @@ export default {
     float: left;
    
 }
-/* #run{
-position: absolute;
-border: gray 3px solid;
-height: 50px;
-width: 100%;
-margin-top: 200px;
-} */
+#butto{
+    
+    float:left;
+    margin-left: 55%; 
+    
+}
+
 
 
 </style>

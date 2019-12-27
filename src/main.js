@@ -1,5 +1,14 @@
 import Vue from 'vue'
 
+
+
+import VueParticles from 'vue-particles'  
+Vue.use(VueParticles)  
+
+import axios from "axios";
+Vue.prototype.$axios = axios;  //此处根据项目情况来配置
+
+
 import Cookies from 'js-cookie'
 
 import 'normalize.css/normalize.css' // a modern alternative to CSS resets
@@ -22,6 +31,8 @@ import * as filters from './filters' // global filters
 
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
+
+
 
 
 /**

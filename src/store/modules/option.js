@@ -13,7 +13,7 @@ export default {
             return response;
         },
         async closeLight1(context, data) {
-            let response = await get('/lightClose/1')
+            let response = await get('/lightOff/1')
             return response;
         },
         async openLight2(context, data) {
@@ -21,7 +21,7 @@ export default {
             return response;
         },
         async closeLight2(context, data) {
-            let response = await get('/lightClose/2')
+            let response = await get('/lightOff/2')
             return response;
         },
        

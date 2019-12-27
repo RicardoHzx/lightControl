@@ -12,6 +12,19 @@
       <el-table-column property="name" label="姓名" width="200"></el-table-column>
       <el-table-column property="num" label="使用次数"></el-table-column>
     </el-table>
+
+    <el-row style="margin-top:300px;margin-left:50px">
+      <label>请输入预约时间:&nbsp;&nbsp;</label>
+      <select>
+        <option value="0">常开</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <el-button style="margin-left:400px">确定开启</el-button>
+       <el-button style="margin-left:595px;margin-top:30px">删除模式</el-button>
+    </el-row>
 </el-drawer>
 
 
@@ -91,14 +104,14 @@ import {mapState,mapActions,mapGetters} from 'vuex'
       
     },
     methods:{
-      ...mapActions('model',['openlight','closeLight','openAir','closeAir','openWindow','closeWindow']),
+      ...mapActions('model',['openLight','closeLight','openAir','closeAir','openWindow','closeWindow']),
       openLightAll(){
         this.closeLight();
         console.log("aaaaaaaaaa")
       },
       closeLightAll(){
         this.openLight();
-        console.log("aaaaaaaaaa")
+        console.log("bbbbbbbbb")
       },
       openAirAll(){
         this.closeAir();
