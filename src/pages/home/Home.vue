@@ -15,14 +15,15 @@
          <div id="myChart2" :style="{width:'850px', height:'480px',top:'1%'}"></div>
         
         </div>
-
-
         <div id="b"><p class="c1">天气信息为:
-        <button type="button" onclick='document.getElementById("c2").innerHTML="信息已经插入"'>
-        点击我查询天气信息
-        </button></p>
-        </div>
+        <button type="button" @click="weather()">
+        点击我更新天气信息
+        </button>
 
+        <div id="weather">
+           <iframe id="mainContent" width="54%" height="100%" frameborder="0"  ></iframe>
+        </div>
+        </div>                  
         </div>
      
     <div id="butto">
@@ -35,20 +36,19 @@
     </div>
   </div>
 </template>
+
 <script>
 
-
-
 export default {
+ 
   neme:"home",
   data(){
     return {
      img_list:[
       
       require("../../assets/u15.jpg"),
-      require("../../assets/u15.jpg"),
       require("../../assets/u55.jpg"),
-      require("../../assets/u55.jpg"),
+    
      
       
      ],
@@ -71,9 +71,14 @@ export default {
         //console.log(this.$refs.opt2.style.height=window.innerHeight-95+"px");
       let that = this
       this.drawLine();
+      this.weather();
     },
   methods:{
-    
+     
+      weather(){
+      var mainContent = document.getElementById('mainContent');
+       mainContent.src = "http://tianqi.moji.com/"//嵌套网址
+      },
       drawLine(){
 
             // 基于准备好的dom，初始化echarts实例
@@ -431,6 +436,9 @@ export default {
     float:left;
     margin-left: 55%; 
     
+}
+#weather{
+    height: 200px;
 }
 
 

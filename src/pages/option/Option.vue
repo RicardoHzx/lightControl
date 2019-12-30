@@ -1,7 +1,7 @@
 <template>
     <div class="option" :style="n" ref='opt'>
       <div>
-        <el-button type="text"  id="butt"  @click="dialogVisible1 = true">&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+        <el-button type="text"  id="butt"  @click="dialogVisible1 = true">1111&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="提示"
         :visible.sync="dialogVisible1"
@@ -14,7 +14,7 @@
         </span>
       </el-dialog>
 
-      <el-button type="text"  id="butt1"  @click="dialogVisible2 = true">&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+      <el-button type="text"  id="butt1"  @click="dialogVisible2 = true">2222&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="提示"
         :visible.sync="dialogVisible2"
@@ -22,12 +22,12 @@
         >
         <span>选择你需要的操作</span>
         <span slot="footer" class="dialog-footer">
-          <el-button @click="closeLightT">关 闭</el-button>
-          <el-button type="primary" @click="openLightT">开启灯光</el-button>
+          <el-button @click="closeLight">关 闭</el-button>
+          <el-button type="primary" @click="openLight">开启灯光</el-button>
         </span>
       </el-dialog>
 
-      <el-button type="text"  id="butt2"  @click="dialogVisible3 = true">&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+      <el-button type="text"  id="butt2"  @click="dialogVisible3 = true">3333&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="提示"
         :visible.sync="dialogVisible3"
@@ -40,36 +40,38 @@
         </span>
       </el-dialog>
 
-      <el-button type="text"  id="butt3" @click="a = true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+      <el-button type="text"  id="butt3" @click="a = true">444444&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="灯带一"
         :visible.sync="a"
         width="30%"
-        >
+        :model="form"
+        >{{form}}
         <span c="footer" class="dialog-footer">
            <span class="demonstration">R:</span>
-           <el-slider v-model="value1" show-input  @change="change" :max=255></el-slider>
+           <el-slider v-model="form.value1" show-input @change="change" :max='255'></el-slider>
             <span class="demonstration">G:</span>
-           <el-slider v-model="value2" show-input  @change="change" :max=255></el-slider>
+           <el-slider v-model="form.value2" show-input @change="change" :max='255'></el-slider>
             <span class="demonstration">B:</span>
-           <el-slider v-model="value3" show-input  @change="change" :max=255></el-slider>
+           <el-slider v-model="form.value3" show-input @change="change" :max='255'></el-slider>
         </span>
       </el-dialog>
+ 
 
-
-      <el-button type="text"  id="butt6" @click="b = true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+      <el-button type="text"  id="butt6" @click="b = true">7777&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="灯带二"
         :visible.sync="b"
         width="30%"
+        :model="form"
         >
         <span c="footer" class="dialog-footer">
-           <span class="demonstration">R:</span>
-           <el-slider v-model="value4" show-input  @change="change" :max=255 ></el-slider>
+            <span class="demonstration">R:</span>
+           <el-slider v-model="form.value4" show-input :max='255'></el-slider>
             <span class="demonstration">G:</span>
-           <el-slider v-model="value5" show-input  @change="change" :max=255></el-slider>
+           <el-slider v-model="form.value5" show-input :max='255'></el-slider>
             <span class="demonstration">B:</span>
-           <el-slider v-model="value6" show-input  @change="change" :max=255></el-slider>
+           <el-slider v-model="form.value6" show-input :max='255'></el-slider>
         </span>
       </el-dialog>
       </div>
@@ -86,12 +88,14 @@ export default {
        backgroundRepeat:"no-repeat",
        backgroundSize: "cover",
      },
+     form:{},
         value1: 0,
         value2: 0,
         value3: 0,
         value4: 0,
         value5: 0,
         value6: 0,
+
       dialogVisible: false,
       dialogVisible1:false,
       dialogVisible2:false,
@@ -114,7 +118,7 @@ export default {
     },  
 
     methods:{
-      ...mapActions('option',['openLight1','closeLight1','openLight2','closeLight2','openRgb1','closeRgb1','openRgb2','closeRgb2']),
+      ...mapActions('option',['openLight1','closeLight1','openLight2','closeLight2','openRGB1','openRGB2']),
     
       openLight(){
         this.closeLight1();
@@ -122,39 +126,23 @@ export default {
       },
       closeLight(){
         this.openLight1();
-        console.log("aaa")
+        console.log("bbb")
       },
 
       openLightT(){
         this.closeLight2();
-        console.log("ccc")
+        console.log("light2")
       },
       closeLightT(){
         this.openLight2();
-        console.log("ddd")
+        console.log("light2")
       },
-      openRgb(){
-        this.closeRgb1();
-        console.log("bbb")
-      },
-      closeRgb(){
-        this.openRgb1();
-        console.log("bbb")
-      },
-
-      openRgbT(){
-        this.closeRgb2();
-        console.log("bbb")
-      },
-      closeRgbT(){  
-        this.openRgb2();
-        console.log("bbb")
-      }, 
-
-
+     
        change(val){
-         this.value1;
+        console.log(this.form);
         console.log(val)
+        this.openRGB1(this.form)
+        this.openRGB2(this.form)
         
      },
     }
