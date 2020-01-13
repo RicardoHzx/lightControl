@@ -9,12 +9,12 @@
 
         <!-- 仪表盘 -->
         <div id="f">
+
         <div id="a">
         <p style="font-size:30px;margin-top:-10px">房间数据情况:</p>
-
          <div id="myChart2" :style="{width:'850px', height:'480px',top:'1%'}"></div>
-        
         </div>
+
         <div id="b"><p class="c1">天气信息为:
         <div id="weather">
            <iframe scrolling="no" src="https://tianqiapi.com/api.php?style=ts&skin=yahoo" 
@@ -43,8 +43,9 @@ export default {
   data(){
     return {
         img_list:[     
-        require("../../assets/u15.jpg"),
-        require("../../assets/u55.jpg"), 
+        require("../../assets/u55.jpg"),
+        require("../../assets/u55.jpg"),
+        require("../../assets/u55.jpg"),  
         ],     
         ind:{
             backgroundImage:"url(" + require("../../assets/u18.jpg")+")",
@@ -77,14 +78,8 @@ export default {
     computed:{
       ...mapState('home',['status']),
     },
-  methods:{
+   methods:{
       ...mapActions('home',['hellogetStatus']),
-     
-    //   weather(){
-    //   var mainContent = document.getElementById('mainContent');
-    //    mainContent.src = "http://tianqi.moji.com/"//嵌套网址
-    //   },
-
       drawLine(data1,data2,data3){
         // 基于准备好的dom，初始化echarts实例
         var myChart2 = this.$echarts.init(document.getElementById('myChart2'))

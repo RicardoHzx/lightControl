@@ -1,8 +1,8 @@
 <template>
   <div class="setting">
     <h1>欢迎来到我的设置模式</h1>
-    {{form}}
-    {{setList}}
+    <!-- {{form}}
+    {{setList}} -->
     <el-form ref="modelForm" :model="form" :rules="rules" label-width="80px" style="margin-top:2%">
       <el-form-item label="模式名称" prop="modelName">
         <el-input v-model="form.modelName"></el-input>

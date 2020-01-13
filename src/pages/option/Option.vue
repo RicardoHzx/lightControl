@@ -1,7 +1,7 @@
 <template>
     <div class="option" :style="n" ref='opt'>
       <div>
-        <el-button type="text"  id="butt"  @click="dialogVisible1 = true">1111&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+        <el-button type="text"  id="butt"  @click="dialogVisible1 = true">灯一&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="提示"
         :visible.sync="dialogVisible1"
@@ -14,7 +14,7 @@
         </span>
       </el-dialog>
 
-      <el-button type="text"  id="butt1"  @click="dialogVisible2 = true">2222&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+      <el-button type="text"  id="butt1"  @click="dialogVisible2 = true">灯二&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="提示"
         :visible.sync="dialogVisible2"
@@ -27,7 +27,7 @@
         </span>
       </el-dialog>
 
-      <el-button type="text"  id="butt2"  @click="dialogVisible3 = true">3333&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+      <el-button type="text"  id="butt2"  @click="dialogVisible3 = true">灯三&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="提示"
         :visible.sync="dialogVisible3"
@@ -40,7 +40,7 @@
         </span>
       </el-dialog>
 
-      <el-button type="text"  id="butt3" @click="a = true">444444&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+      <el-button type="text"  id="butt3" @click="a = true">RGB一&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="灯带一"
         :visible.sync="a"
@@ -59,7 +59,7 @@
       </el-dialog>
  
 
-      <el-button type="text"  id="butt6" @click="b = true">7777&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+      <el-button type="text"  id="butt6" @click="b = true">RGB二&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
         <el-dialog
         title="灯带二"
         :visible.sync="b"

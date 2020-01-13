@@ -3,11 +3,11 @@
     <div class="left">
       <div class="button" v-for="item in models" :key="item.id">
         <el-tooltip class="item" effect="dark" :content="item.modelNote" placement="right-start">
-          <el-button style="height:160px;width:220px ;" @click="openTable(item.modelId)">{{item.modelName}}</el-button>
+          <el-button style="height:160px;width:220px;background-color:#D4D4D4;
+border-color:black;" @click="openTable(item.modelId)">{{item.modelName}}</el-button>
         </el-tooltip>
       </div>
     </div>
-    <el-divider direction="vertical" ></el-divider>
     <div class="right">
       <el-button type="primary" round style="height:160px;width:220px" @click='openLightAll'>灯光全开</el-button>
       <el-button type="primary" round style="height:160px;width:220px" @click='closeLightAll'>灯光全关</el-button>
@@ -19,10 +19,6 @@
   
   <!-- 抽屉 -->
   <el-drawer title="模式操作信息" :visible.sync="table" direction="rtl" size="50%">
-    <!-- 定时开启 -->
-    <el-button type="text" @click="timeOpen">定时开启</el-button>
-    <!-- 定时关闭 -->
-    <el-button type="text" @click="timeClose">定时关闭</el-button>
     <!-- 表格 -->
     <el-table :data="logs.list">
       <el-table-column prop="modelId" label="模式" width="150"></el-table-column>
@@ -36,11 +32,16 @@
       layout="total, prev, pager, next"
       :total="logs.total">
     </el-pagination>
+     <el-row style="margin-top:30px">
+     <!-- 定时开启 -->
+    <el-button type="text" @click="timeOpen">&nbsp;定时开启&nbsp;</el-button>
+    <!-- 定时关闭 -->
+    <el-button type="text" @click="timeClose">&nbsp;定时关闭&nbsp;</el-button>
     <!-- 按钮 -->
-    <el-row style="margin-left:250px">
-      <el-button  type="primary" @click="openModels">确认开启</el-button>
-      <el-button  type="primary" @click="closeModels">确认关闭</el-button>
-      <el-button type="danger" style="margin-left:250px;margin-top:5px;" @click="deleteModels">删除模式 </el-button>
+   
+      <el-button  type="primary"  style='margin-left:50px' @click="openModels">&nbsp;永久开启&nbsp;</el-button>
+      <el-button  type="primary" @click="closeModels">&nbsp;确认关闭&nbsp;</el-button>
+      <el-button type="danger" style='margin-left:450px' @click="deleteModels">&nbsp;&nbsp;删除模式&nbsp;&nbsp;</el-button>
     </el-row>
   </el-drawer>
 
@@ -229,11 +230,11 @@ import Vue from 'vue'
      justify-content:space-between;
      flex-direction: row;
      flex-wrap: wrap;
-     position: relative;
-     width:49%;
-     height: 500px;
+     position: absolute;
+     width:96%;
+     height: 680px;
      margin-top: 10px;
-     /* border:1px solid #F00; */
+       border-bottom:2px solid #8B7765;  
     }
     .button{
       width: 30%;
@@ -243,10 +244,10 @@ import Vue from 'vue'
      justify-content:space-between;
      flex-direction: row;
      flex-wrap: wrap;
-      position: relative;
-      width:49%;
-      height: 500px;
-      margin-top: 10px;
-      /* border:1px solid #000; */
+      position: fixed;
+      width:87%;
+      height: 430px;
+      margin-top: 700px;
+       /* border-top:2px solid gray;  */
     }
 </style>
