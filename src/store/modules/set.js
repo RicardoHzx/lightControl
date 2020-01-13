@@ -1,4 +1,4 @@
-import {post,get} from '@/http/axios'
+import {post,get,post_array} from '@/http/axios'
 import data from '@/views/pdf/content';
 export default {
     namespaced: true,
@@ -9,12 +9,8 @@ export default {
 
     },
     actions: {
-        // async addModel(context, params) {
-        //     let response = await post('/model/addModel',params)
-        //     return response;
-        // },
         async addModel(context, params) {
-            let response = await post('/model/addModel/'+params.modelId+"/"+data)
+            let response = await post_array('/model/addModel/{model}',params)
             return response;
         },
 

@@ -25,6 +25,7 @@ export default {
             return response;
         },
         async openRGB1(context, data) {
+            console.log(data,"duysdus")
             let response = await get('/changeRGB/1/'+data.value1+"/"+data.value2+"/"+data.value3)
             return response;
         },

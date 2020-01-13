@@ -92,7 +92,7 @@ export const constantRoutes = [
         path: 'home',
         component: () => import('@/pages/home/Home'),
         name: 'home',
-        meta: { title: '首页', icon: 'icon',affix: true }
+        meta: { title: '首页', icon: 'homes',affix: true }
       }
     ]
   },
@@ -117,41 +117,42 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
-  // {
-  //   path: '/home',
-  //   component: Layout,
-  //   redirect: '/home/Home',
-  //   children: [
-  //     {
-  //       path: 'home',
-  //       component: () => import('@/pages/home/Home'),
-  //       name: 'home',
-  //       meta: { title: '首页', icon: 'icon', noCache: true }
-  //     }
-  //   ]
-  // },
   {
     path: '/model',
     component: Layout,
-    alwaysShow:true,
     redirect: '/model/Model',
-    name:"model",
-    meta: { title: '模式', icon: 'icon', noCache: true },
     children: [
       {
         path: 'model',
         component: () => import('@/pages/model/Model'),
         name: 'model',
-        meta: { title: '情景模式', icon: 'icon', noCache: true }
-      },
-      {
-        path: 'mymodel',
-        component: () => import('@/pages/model/Mymodel'),
-        name: 'mymodel',
-        meta: { title: '我的模式', icon: 'icon', noCache: true }
+        meta: { title: '情景模式', icon: 'models', noCache: true }
       }
     ]
   },
+  // {
+  //   path: '/model',
+  //   component: Layout,
+  //   alwaysShow:true,
+  //   redirect: '/model/Model',
+  //   // name:"model",
+  //   meta: { title: '模式', icon: 'icon', noCache: true },
+  //   children: [
+  //     {
+  //       path: 'model',
+  //       component: () => import('@/pages/model/Model'),
+  //       name: 'model',
+  //       meta: { title: '情景模式', icon: 'icon', noCache: true }
+  //     },
+  //     {
+  //       path: 'mymodel',
+  //       component: () => import('@/pages/model/Mymodel'),
+  //       name: 'mymodel',
+  //       meta: { title: '我的模式', icon: 'icon', noCache: true }
+  //     }
+  //   ]
+  // },
+
   {
     path: '/sensor',
     component: Layout,
@@ -161,7 +162,7 @@ export const asyncRoutes = [
         path: 'sensor',
         component: () => import('@/pages/sensor/Sensor'),
         name: 'sensor',
-        meta: { title: '传感器', icon: 'icon', noCache: true }
+        meta: { title: '传感器', icon: 'sensor', noCache: true }
       }
     ]
   },
@@ -174,7 +175,7 @@ export const asyncRoutes = [
         path: 'set',
         component: () => import('@/pages/set/Setting'),
         name: 'set',
-        meta: { title: '设置', icon: 'icon', noCache: true }
+        meta: { title: '设置', icon: 'set', noCache: true }
       }
     ]
   },
@@ -188,7 +189,7 @@ export const asyncRoutes = [
         path: 'option',
         component: () => import('@/pages/option/Option'),
         name: 'option',
-        meta: { title: '选项', icon: 'icon', noCache: true }
+        meta: { title: '选项', icon: 'option', noCache: true }
       }
     ]
   },
@@ -201,7 +202,7 @@ export const asyncRoutes = [
         path: 'about',
         component: () => import('@/pages/about/About'),
         name: 'about',
-        meta: { title: '关于', icon: 'icon', noCache: true }
+        meta: { title: '关于', icon: 'about', noCache: true }
       }
     ]
   },

@@ -4,7 +4,7 @@
          <el-carousel indicator-position="outside">
             <el-carousel-item v-for="item in img_list" :key="item">
             <img :src="item" alt="">
-            </el-carousel-item>a
+            </el-carousel-item>
          </el-carousel>
 
         <!-- 仪表盘 -->
@@ -16,20 +16,18 @@
         
         </div>
         <div id="b"><p class="c1">天气信息为:
-        <button type="button" @click="weather()">
-        点击我更新天气信息
-        </button>
-
         <div id="weather">
-           <iframe id="mainContent" width="54%" height="100%" frameborder="0"  ></iframe>
+           <iframe scrolling="no" src="https://tianqiapi.com/api.php?style=ts&skin=yahoo" 
+           frameborder="0" width="450" height="290" allowtransparency="true"></iframe> 
         </div>
         </div>                  
         </div>
-     
-    <div id="butto">
-      <div class="tableTitle"><span class="midText"> 室内信息</span></div>
-      <div id="myChart" style="height:200px;width:800px"></div>
     
+    <div id="butto">
+         <!-- {{status}} -->
+      <div class="tableTitle"><span class="midText"> 室内信息</span></div>
+      <div id="myChart" style="height:200px;width:800px">
+    </div>
 
      <el-divider content-position="left">.</el-divider>
    
@@ -38,126 +36,124 @@
 </template>
 
 <script>
+import {mapState,mapActions,mapGetters} from 'vuex'
 
 export default {
- 
-  neme:"home",
+  name:"home",
   data(){
     return {
-     img_list:[
-      
-      require("../../assets/u15.jpg"),
-      require("../../assets/u55.jpg"),
-    
-     
-      
-     ],
-     
-     ind:{
-       backgroundImage:"url(" + require("../../assets/u18.jpg")+")",
-       backgroundPostion:"center center",
-       backgroundRepeat:"no-repeat",
-       backgroundSize: "cover",
-       height:'1000px'       
-       
-    }
+        img_list:[     
+        require("../../assets/u15.jpg"),
+        require("../../assets/u55.jpg"), 
+        ],     
+        ind:{
+            backgroundImage:"url(" + require("../../assets/u18.jpg")+")",
+            backgroundPostion:"center center",
+            backgroundRepeat:"no-repeat",
+            backgroundSize: "cover",
+            height:'1000px'         
+        },
+        arr:[]
     }
   },
-   
-       
- 
-   mounted () {
+  created(){
+      this.hellogetStatus().then(()=>{
+      this.drawLine(this.status[2],this.status[3],this.status[4]);     
 
+      });
+      setInterval(()=>{
+          this.hellogetStatus().then(()=>{
+      this.drawLine(this.status[2],this.status[3],this.status[4]);     
+
+          })
+      },1000000)
+      
+  },
+     mounted () {
         //console.log(this.$refs.opt2.style.height=window.innerHeight-95+"px");
       let that = this
-      this.drawLine();
       this.weather();
     },
+    computed:{
+      ...mapState('home',['status']),
+    },
   methods:{
+      ...mapActions('home',['hellogetStatus']),
      
-      weather(){
-      var mainContent = document.getElementById('mainContent');
-       mainContent.src = "http://tianqi.moji.com/"//嵌套网址
-      },
-      drawLine(){
+    //   weather(){
+    //   var mainContent = document.getElementById('mainContent');
+    //    mainContent.src = "http://tianqi.moji.com/"//嵌套网址
+    //   },
 
-            // 基于准备好的dom，初始化echarts实例
-            var myChart2 = this.$echarts.init(document.getElementById('myChart2'))
-            // 绘制图表
-            myChart2.setOption({
-
-
-      title: {
-        text: '折线图堆叠'
-    },
-    tooltip: {
-        trigger: 'axis'
-    },
-    legend: {
-        data:['温度','湿度','风力','pm2.5','甲醛']
-    },
-    grid: {
-         left:'5%',
-         right: '3%',
-         bottom: '3%',
-        containLabel: true
-    },
-    toolbox: {
-        feature: {
-            saveAsImage: {}
-        }
-    },
-    xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: ['周一','周二','周三','周四','周五','周六','周日']
-    },
-    yAxis: {
-        type: 'value'
-    },
+      drawLine(data1,data2,data3){
+        // 基于准备好的dom，初始化echarts实例
+        var myChart2 = this.$echarts.init(document.getElementById('myChart2'))
+        // 绘制图表
+        myChart2.setOption({
+            title: {
+                text: '折线图堆叠'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['温度','湿度','风力','pm2.5','甲醛']
+            },
+            grid: {
+                    left:'5%',
+                    right: '3%',
+                    bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['周一','周二','周三','周四','周五','周六','周日']
+            },
+            yAxis: {
+                type: 'value'
+            },
     series: [
         {
             name:'温度',
             type:'line',
             stack: '总量',
-            data:[120, 132, 101, 134, 90, 230, 210]
+            data:[34, 32, 30, 24, 25, 32, 31]
         },
         {
             name:'湿度',
             type:'line',
             stack: '总量',
-            data:[220, 182, 191, 234, 290, 330, 310]
+            data:[30, 58, 37, 43, 44, 34, 49]
         },
         {
-            name:'风力',
+            name:'空气质量',
             type:'line',
             stack: '总量',
-            data:[150, 232, 201, 154, 190, 330, 410]
+            data:[150, 232, 201, 154, 190, 164, 161]
         },
         {
             name:'pm2.5',
             type:'line',
             stack: '总量',
-            data:[320, 332, 301, 334, 390, 330, 320]
+            data:[36, 37, 117, 34, 35, 107, 56]
         },
         {
             name:'甲醛',
             type:'line',
             stack: '总量',
-            data:[820, 932, 901, 934, 1290, 1330, 1320]
+            data:[37, 28, 27, 36, 29, 25, 39]
         }
     ]
-
-
             }
             );
-
-
-
         // 基于准备好的dom，初始化echarts实例
         let myChart = this.$echarts.init(document.getElementById('myChart'))
-        // let myChart2 = this.$echarts.init(document.getElementById('myChart2'))
-        // let myChart3 = this.$echarts.init(document.getElementById('myChart3'))
         var dataStyle = {
             normal: {
                 label: {
@@ -180,7 +176,7 @@ export default {
               hoverAnimation: false,
               center: ['15%', '50%'],
               data: [{
-                  value: 25,
+                  value: data1,
                   label: {
                       normal: {
                           rich: {
@@ -197,7 +193,7 @@ export default {
                               }
                           },
                           formatter: function(params){
-                              return "{b|在线统计}\n\n"+"{a|"+params.value+"个}"+"\n\n{b|增长2%}";
+                              return "{b|PM2.5}\n\n"+"{a|"+params.value+"个}"+"\n\n";
                           },
                           position: 'center',
                           show: true,
@@ -216,7 +212,7 @@ export default {
                       }
                   }
               }, {
-                  value: 75,
+                  value: 200-parseInt(data1),
                   name: 'invisible',
                   itemStyle: {
                       normal: {
@@ -236,7 +232,7 @@ export default {
               hoverAnimation: false,
               center: ['50%', '50%'],
               data: [{
-                  value: 50,
+                  value: data2,
                   label: {
                       normal: {
                           rich: {
@@ -253,7 +249,7 @@ export default {
                               }
                           },
                           formatter: function(params){
-                              return "{b|离线统计}\n\n"+"{a|"+params.value+"个}"+"\n\n{b|增长2%}";
+                              return "{b|温度}\n\n"+"{a|"+params.value+"°C}"+"\n\n{b|增长2%}";
                           },
                           position: 'center',
                           show: true,
@@ -272,7 +268,7 @@ export default {
                       }
                   }
               }, {
-                  value: 50,
+                  value: 200-parseInt(data2),
                   name: 'invisible',
                   itemStyle: {
                       normal: {
@@ -292,7 +288,7 @@ export default {
               hoverAnimation: false,
               center: ['85%', '50%'],
               data: [{
-                  value: 75,
+                  value: data3,
                   label: {
                       normal: {
                           rich: {
@@ -309,7 +305,7 @@ export default {
                               }
                           },
                           formatter: function(params){
-                              return "{b|缺报统计}\n\n"+"{a|"+params.value+"个}"+"\n\n{b|增长2%}";
+                              return "{b|湿度}\n\n"+"{a|"+params.value+"个}"+"\n\n{b|增长2%}";
                           },
                           position: 'center',
                           show: true,
@@ -328,7 +324,7 @@ export default {
                       }
                   }
               }, {
-                  value: 25,
+                  value: 200-parseInt(data3),
                   name: 'invisible',
                   itemStyle: {
                       normal: {
@@ -340,12 +336,8 @@ export default {
                   }
               }]
           }]
-      }
-        
+      } 
         myChart.setOption(option1)
-       
-       
-
       }
     }
   }

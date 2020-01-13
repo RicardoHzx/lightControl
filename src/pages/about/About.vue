@@ -1,8 +1,6 @@
 <template>
-
 <div class="about" :style="pig" ref="opt1">
    <div id="er">
-    
     <vue-particles
         color="#8B1A1A"
         :particleOpacity="0.7"
@@ -25,33 +23,26 @@
        <p class="text" style="font-size:60px;color:black;margin-left:40%" v-for="(text, index) in arr" :key="index">{{text}}</p>
     <router-view></router-view>
   </div>
-
-  
-    </div>
+  </div>
 </template>
 <script>
 export default {
   data(){
     return {
       arr: [
-    '感谢胡老师',
-    '感谢郭老师 ',
-    '感谢王老师',
+    '感谢各位老师指导',
     '感谢组员:乔侨',
     '感谢组员:徐诗骅',
     '感谢组员:李宣',
     '感谢组员:李春志',
     '感谢组员:姚骏发', 
-    ],
+      ],
 
      pig:{
        backgroundImage:"url(" + require("../../assets/u17.jpg")+")",
        backgroundPostion:"center center",
        backgroundRepeat:"no-repeat",
-       backgroundSize: "cover",
-       
-     
-       
+       backgroundSize: "cover",  
     }
   }
 },
@@ -76,6 +67,4 @@ export default {
     transform: translateY(-1550px);
   }
 }
-
-
 </style>

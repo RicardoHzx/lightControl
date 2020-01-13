@@ -46,14 +46,15 @@
         :visible.sync="a"
         width="30%"
         :model="form"
-        >{{form}}
+        >
+        {{form}}
         <span c="footer" class="dialog-footer">
            <span class="demonstration">R:</span>
-           <el-slider v-model="form.value1" show-input @change="change" :max='255'></el-slider>
+           <el-slider v-model="form.value1" show-input @change="changeRGB1" :max='255'></el-slider>
             <span class="demonstration">G:</span>
-           <el-slider v-model="form.value2" show-input @change="change" :max='255'></el-slider>
+           <el-slider v-model="form.value2" show-input @change="changeRGB1" :max='255'></el-slider>
             <span class="demonstration">B:</span>
-           <el-slider v-model="form.value3" show-input @change="change" :max='255'></el-slider>
+           <el-slider v-model="form.value3" show-input @change="changeRGB1" :max='255'></el-slider>
         </span>
       </el-dialog>
  
@@ -67,11 +68,11 @@
         >
         <span c="footer" class="dialog-footer">
             <span class="demonstration">R:</span>
-           <el-slider v-model="form.value4" show-input :max='255'></el-slider>
+           <el-slider v-model="form.value4" show-input @change="changeRGB2" :max='255'></el-slider>
             <span class="demonstration">G:</span>
-           <el-slider v-model="form.value5" show-input :max='255'></el-slider>
+           <el-slider v-model="form.value5" show-input @change="changeRGB2" :max='255'></el-slider>
             <span class="demonstration">B:</span>
-           <el-slider v-model="form.value6" show-input :max='255'></el-slider>
+           <el-slider v-model="form.value6" show-input @change="changeRGB2" :max='255'></el-slider>
         </span>
       </el-dialog>
       </div>
@@ -89,12 +90,19 @@ export default {
        backgroundSize: "cover",
      },
      form:{},
-        value1: 0,
-        value2: 0,
-        value3: 0,
-        value4: 0,
-        value5: 0,
-        value6: 0,
+
+      value1: '00',
+      value2: '00',
+      value3: '00',
+      value4: '00',
+      value5: '00',
+      value6: '00',
+      // value1: 0,
+      // value2: 0,
+      // value3: 0,
+      // value4: 0,
+      // value5: 0,
+      // value6: 0,
 
       dialogVisible: false,
       dialogVisible1:false,
@@ -109,7 +117,6 @@ export default {
        console.log(this.$refs.opt.style.height=window.innerHeight-95+"px");
     },
 
-
     created(){
 
     },
@@ -122,28 +129,35 @@ export default {
     
       openLight(){
         this.closeLight1();
-        console.log("bbb")
       },
       closeLight(){
         this.openLight1();
-        console.log("bbb")
       },
-
       openLightT(){
         this.closeLight2();
-        console.log("light2")
       },
       closeLightT(){
         this.openLight2();
-        console.log("light2")
       },
      
-       change(val){
-        console.log(this.form);
-        console.log(val)
-        this.openRGB1(this.form)
-        this.openRGB2(this.form)
-        
+      changeRGB1(val){
+        if(this.form.value1==0&&this.form.value2==0&&this.form.value3==0){
+          this.form.value1='00'
+          this.form.value2='00'
+          this.form.value3='00'
+       
+        }
+      console.log(this.form);
+      console.log(val)
+      this.openRGB1(this.form)
+     },
+     changeRGB2(val){
+        if(this.form.value4==0&&this.form.value5==0&&this.form.value6==0){
+          this.form.value4='00'
+          this.form.value5='00'
+          this.form.value6='00'
+        }
+      this.openRGB2(this.form)      
      },
     }
   };
